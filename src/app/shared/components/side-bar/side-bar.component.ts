@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -13,7 +14,7 @@ export class SideBarComponent {
 
   public customOptions: Array<any> = [];
 
-  constructor() {
+  constructor(private router: Router) {
     this.mainMenu.defaultOptions = [
       {
         name: 'Home',
@@ -61,5 +62,15 @@ export class SideBarComponent {
         router: ['/'],
       },
     ];
+  }
+
+  public goTo($event: any): void {
+    this.router.navigate(['/', 'favorites'], {
+      queryParams: {
+        key1: 'value1',
+        key2: 'value2',
+      },
+    });
+    console.log($event);
   }
 }
