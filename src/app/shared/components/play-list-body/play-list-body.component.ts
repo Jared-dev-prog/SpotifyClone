@@ -9,9 +9,21 @@ import * as dataRaw from '../../../data/tracks.json';
 })
 export class PlayListBodyComponent {
   public tracks: TrackModel[] = [];
+  public optionSort: { property: string | null; order: string } = {
+    property: null,
+    order: 'asc',
+  };
 
   constructor() {
     const { data } = (dataRaw as any).default;
     this.tracks = data;
+  }
+
+  public changeSort(property: string): void {
+    const { order } = this.optionSort;
+    this.optionSort = {
+      property: property,
+      order: order === 'asc' ? 'desc' : 'asc',
+    };
   }
 }
