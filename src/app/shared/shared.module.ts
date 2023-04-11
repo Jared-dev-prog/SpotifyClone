@@ -4,16 +4,9 @@ import { MediaPlayerComponent } from './components/media-player/media-player.com
 import { HeaderUserComponent } from './components/header-user/header-user.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 
-
-
 @NgModule({
-  declarations: [
-    MediaPlayerComponent,
-    HeaderUserComponent,
-    SideBarComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+  declarations: [MediaPlayerComponent, HeaderUserComponent, SideBarComponent],
+  imports: [CommonModule],
+  exports: [SideBarComponent],
 })
-export class SharedModule { }
+export class SharedModule {}
