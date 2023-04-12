@@ -39,6 +39,7 @@
       <div class="form-steps">
         <a class="link" href="">¿Se te ha olvidado la contraseña?</a>
       </div>
+      <div *ngIf="sessionError">Uups!, ocurrio un error.</div>
       <div class="form-action">
         <button [disabled]="formLogin.invalid" class="login social-btn">
           Iniciar sesión
