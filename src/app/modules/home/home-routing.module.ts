@@ -13,6 +13,11 @@ const routes: Routes = [
       import('../favorites/favorites.module').then((m) => m.FavoritesModule),
   },
   {
+    path: 'history',
+    loadChildren: () =>
+      import('../history/history.module').then((m) => m.HistoryModule),
+  },
+  {
     path: '**',
     redirectTo: '/tracks',
   },
