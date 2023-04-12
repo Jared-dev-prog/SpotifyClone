@@ -1,5 +1,4 @@
 import { Component, OnDestroy } from '@angular/core';
-import { TrackModel } from 'src/app/core/models/tracks.model';
 import { MultimediaService } from '../../services/multimedia.service';
 import { Subscription } from 'rxjs';
 
