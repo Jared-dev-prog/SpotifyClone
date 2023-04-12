@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +13,11 @@ export class LoginPageComponent {
   sessionError: boolean = false;
   formLogin: FormGroup = new FormGroup({});
 
-  constructor(private authService: AuthService, private cookie: CookieService) {
+  constructor(
+    private authService: AuthService,
+    private cookie: CookieService,
+    private router: Router
+  ) {
     this.formLogin = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -30,6 +35,7 @@ export class LoginPageComponent {
         console.log('Inicio de sesion exitoso', response);
         const { tokenSession, data } = response;
         this.cookie.set('token', tokenSession, 4, '/');
+        this.router.navigate(['/', 'tracks']);
       },
       error: (e) => {
         this.sessionError = true;
