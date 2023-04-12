@@ -9,26 +9,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./media-player.component.css'],
 })
 export class MediaPlayerComponent implements OnDestroy {
-  public mockCover: TrackModel = {
-    cover:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLa1d1eduIxSukKCItfJJqzIK3Ab0pTj4_fw&usqp=CAU',
-    album: 'Gioli & Assia',
-    name: 'BEBE (Oficial)',
-    url: 'http://localhost/tracks.mp3',
-    _id: 1,
-  };
-
   listObservers: Array<Subscription> = [];
 
-  constructor(private multimediaService: MultimediaService) {
-    const observer1: Subscription = this.multimediaService.callback.subscribe(
-      (response: TrackModel) => {
-        console.log('recibiendo cancion...', response);
-      }
-    );
-
-    this.listObservers = [observer1];
-  }
+  constructor(public multimediaService: MultimediaService) {}
 
   ngOnDestroy(): void {
     this.listObservers.forEach((u) => u.unsubscribe());
