@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { TrackModel } from 'src/app/core/models/tracks.model';
 import { environment } from 'src/environments/environment';
 
@@ -10,9 +10,18 @@ import { environment } from 'src/environments/environment';
 export class TrackService {
   private readonly URL = environment.api;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-  getTracks$(): Observable<any> {
-    return this.httpClient.get(`${this.URL}/tracks`);
+  /**
+   *
+   * @returns Devolver todas las canciones
+   */
+
+  public getAllTracks$(): Observable<any> {
+    return this.http.get(`${this.URL}/tracks`).pipe(
+      map(({ data }: any) => {
+        return data;
+      })
+    );
   }
 }

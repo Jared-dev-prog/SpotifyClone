@@ -15,9 +15,19 @@ export class TracksPageComponent implements OnDestroy {
   listObservers$: Array<Subscription> = [];
 
   constructor(private trackService: TrackService) {
-    this.trackService.getTracks$().subscribe((response) => {
-      console.log(response);
-    });
+    this.loadDataAll();
+  }
+
+  loadDataAll(): void {
+    this.trackService.getAllTracks$().subscribe(
+      (response) => {
+        this.tracksTrending = response;
+        this.tracksRandom = response;
+      },
+      (error) => {
+        console.log('Error de conexion', error);
+      }
+    );
   }
 
   ngOnDestroy(): void {}
